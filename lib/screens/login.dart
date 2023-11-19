@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:resapp/dashboar.dart';
 import 'package:resapp/screens/registro.dart';
 import 'package:resapp/widgest/custiompainter.dart';
+
+import '../views/dashboard.dart';
 
 class FloatingLoginScreen extends StatelessWidget {
   const FloatingLoginScreen({Key? key}) : super(key: key);

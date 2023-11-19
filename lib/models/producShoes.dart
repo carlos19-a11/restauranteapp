@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:flutter/material.dart';
 import 'package:resapp/models/prodc.dart';
 
@@ -44,6 +46,11 @@ class ProctuShoes extends ChangeNotifier {
   // remover item form cart
 
   void removItemFormCart(Product product) {
+    _usercart.remove(product);
+    notifyListeners();
+  }
+
+  void removerItemFromCart(Product product) {
     _usercart.remove(product);
     notifyListeners();
   }

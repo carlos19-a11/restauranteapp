@@ -6,7 +6,7 @@ import 'package:resapp/productos.dart';
 import 'package:resapp/widgest/navbar.dart';
 
 // ignore: must_be_immutable
-class Dashborad extends StatelessWidget {
+class HomePage extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   var height, width;
   List imgData = [
@@ -26,7 +26,7 @@ class Dashborad extends StatelessWidget {
     "Postres",
     "Bebidas",
   ];
-  Dashborad({super.key});
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +176,6 @@ class Dashborad extends StatelessWidget {
               ],
             ),
           ),
-        ),
-        bottomNavigationBar: NavbarButtom());
+        ));
   }
 }
