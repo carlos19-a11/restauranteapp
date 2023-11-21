@@ -1,20 +1,40 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:resapp/models/prodc.dart';
 import 'package:resapp/models/producShoes.dart';
 import 'package:resapp/models/product_tile.dart';
-import 'package:resapp/widgest/navbar.dart';
+import 'package:resapp/providers/Auth.dart';
 
 class ProducrtosPage extends StatefulWidget {
-  const ProducrtosPage({Key? key}) : super(key: key);
+  int categoria;
+  ProducrtosPage({Key? key, required this.categoria}) : super(key: key);
 
   @override
   State<ProducrtosPage> createState() => _ProducrtosPageState();
 }
 
 class _ProducrtosPageState extends State<ProducrtosPage> {
-  void addToCart(Product product) {
-    print(product.name);
+  List<Datum>? _listaProductos = [];
+  late int dato;
+
+  @override
+  void initState() {
+    super.initState();
+    print(widget.categoria);
+    _loadProductos();
+  }
+
+  void _loadProductos() async {
+    List<Datum>? listProducts = await obtenerProductos(widget.categoria);
+    setState(() {
+      _listaProductos = listProducts;
+    });
+  }
+
+  void addToCart(Datum product) {
+    // print(product.name);
     // add to cart
 
     //let user know it add been successflly added
@@ -63,9 +83,9 @@ class _ProducrtosPageState extends State<ProducrtosPage> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: value.productshop.length,
+                      itemCount: _listaProductos?.length,
                       itemBuilder: (context, index) {
-                        Product eachproducto = value.productshop[index];
+                        Datum eachproducto = _listaProductos![index];
                         return ProductosTile(
                           product: eachproducto,
                           icon: Icon(Icons.add),
@@ -76,8 +96,6 @@ class _ProducrtosPageState extends State<ProducrtosPage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // Implementa aquí la lógica para manejar el botón de "Volver"
-                      // Puedes usar Navigator.pop para volver a la pantalla anterior
                       Navigator.pop(context);
                     },
                     child: Text(

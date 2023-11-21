@@ -14,9 +14,7 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   // remove item from cart
-  void removerFromCart(Product product) {
-    print('aqui llega');
-
+  void removerFromCart(Datum product) {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -46,7 +44,6 @@ class _CartPageState extends State<CartPage> {
                 ),
               ],
             ));
-    ;
   }
 
   @override
@@ -73,7 +70,7 @@ class _CartPageState extends State<CartPage> {
                     itemCount: value.usershop.length,
                     itemBuilder: (context, index) {
                       // get individual cart items
-                      Product eachproducto = value.usershop[index];
+                      Datum eachproducto = value.usershop[index];
 
                       // return products title
                       return ProductosTile(
@@ -85,17 +82,23 @@ class _CartPageState extends State<CartPage> {
                     },
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Implementa aquí la lógica para manejar el botón de "Volver"
-                    // Puedes usar Navigator.pop para volver a la pantalla anterior
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "Volver",
-                    style: TextStyle(color: Colors.black),
+                GestureDetector(
+                  onTap: payNow,
+                  child: Container(
+                    padding: const EdgeInsets.all(25),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.brown,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: const Text(
+                        "Comprar",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
-                ),
+                )
               ],
             ),
           ),
@@ -104,4 +107,12 @@ class _CartPageState extends State<CartPage> {
       //bottomNavigationBar: NavbarButtom(),
     );
   }
+
+  void payNow() {}
 }
+
+//  onPressed: () {
+//                     // Implementa aquí la lógica para manejar el botón de "Volver"
+//                     // Puedes usar Navigator.pop para volver a la pantalla anterior
+//                     Navigator.pop(context);
+//                   // },

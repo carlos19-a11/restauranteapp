@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:resapp/screens/registro.dart';
 import 'package:resapp/widgest/custiompainter.dart';
 
+import '../providers/Auth.dart';
 import '../views/dashboard.dart';
 
-class FloatingLoginScreen extends StatelessWidget {
+class FloatingLoginScreen extends StatefulWidget {
   const FloatingLoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<FloatingLoginScreen> createState() => _FloatingLoginScreenState();
+}
+
+class _FloatingLoginScreenState extends State<FloatingLoginScreen> {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +66,14 @@ class FloatingLoginScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        controller: email,
                         decoration: const InputDecoration(
                           labelText: "Correo electrónico",
                         ),
                       ),
                       const SizedBox(height: 10),
                       TextFormField(
+                        controller: password,
                         obscureText: true,
                         decoration: const InputDecoration(
                           labelText: "Contraseña",
@@ -71,11 +82,7 @@ class FloatingLoginScreen extends StatelessWidget {
                       const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Dashborad()),
-                          );
+                          signIn(email.text, password.text, context);
                         },
                         child: const Text("Iniciar sesión"),
                       ),
@@ -95,9 +102,7 @@ class FloatingLoginScreen extends StatelessWidget {
                             child: const Text("Registrar"),
                           ),
                           TextButton(
-                            onPressed: () {
-                              // Acción a realizar cuando se presiona "Olvidaste tu contraseña"
-                            },
+                            onPressed: () {},
                             child: const Text("Olvidaste tu contraseña"),
                           ),
                         ],

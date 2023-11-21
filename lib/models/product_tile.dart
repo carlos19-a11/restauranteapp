@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:resapp/models/prodc.dart';
 
 class ProductosTile extends StatelessWidget {
-  final Product product;
-  void Function(Product)? accionCart;
+  final Datum product;
+  void Function(Datum)? accionCart;
   final Widget icon;
   ProductosTile(
       {super.key,
@@ -21,9 +21,9 @@ class ProductosTile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
       child: ListTile(
-        title: Text(product.name),
-        subtitle: Text(product.precio),
-        leading: Image.asset(product.imagepath),
+        title: Text("${product.name}"),
+        subtitle: Text("${product.precio}"),
+        leading: Image.asset("${product.imagepath}"),
         trailing: IconButton(
           icon: icon,
           onPressed: () {

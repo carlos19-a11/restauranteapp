@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:resapp/widgest/custiompainter.dart';
 
+import '../providers/Auth.dart';
 import 'login.dart';
 
-class RegistrationScreen extends StatelessWidget {
+class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
+
+  @override
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
+}
+
+class _RegistrationScreenState extends State<RegistrationScreen> {
+  TextEditingController email = TextEditingController();
+  TextEditingController nombre = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController telefono = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,17 +67,20 @@ class RegistrationScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        controller: nombre,
                         decoration: const InputDecoration(
                           labelText: "Nombre",
                         ),
                       ),
                       const SizedBox(height: 10),
                       TextFormField(
+                        controller: email,
                         decoration: const InputDecoration(
                           labelText: "Correo electrónico",
                         ),
                       ),
                       TextFormField(
+                        controller: telefono,
                         decoration: const InputDecoration(
                           labelText: "Telefono",
                         ),
@@ -74,6 +88,7 @@ class RegistrationScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       const SizedBox(height: 10),
                       TextFormField(
+                        controller: password,
                         obscureText: true,
                         decoration: const InputDecoration(
                           labelText: "Contraseña",
@@ -82,12 +97,8 @@ class RegistrationScreen extends StatelessWidget {
                       const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const FloatingLoginScreen()),
-                          );
+                          signUp(email.text, nombre.text, password.text,
+                              telefono.text, context);
                         },
                         child: const Text("Registrarse"),
                       ),

@@ -4,54 +4,41 @@ import 'package:flutter/material.dart';
 import 'package:resapp/models/prodc.dart';
 
 class ProctuShoes extends ChangeNotifier {
-  final List<Product> _shop = [
-    Product(
-      name: 'esta es ua prueba',
-      precio: '10.0',
-      imagepath: "assets/imag/retirement-home.png",
-    ),
-    Product(
-      name: 'esta es ua prueba',
-      precio: '10.0',
-      imagepath: "assets/imag/retirement-home.png",
-    ),
-    Product(
-      name: 'esta es ua prueba',
-      precio: '10.0',
-      imagepath: "assets/imag/retirement-home.png",
-    ),
-    Product(
-      name: 'esta es ua prueba',
-      precio: '10.0',
-      imagepath: "assets/imag/retirement-home.png",
-    ),
-  ];
+  late String _token;
+
+  final List<Datum> _shop = [];
 
   //user cart
-  List<Product> _usercart = [];
+  List<Datum> _usercart = [];
 
-  //get producto list
-  List<Product> get productshop => _shop;
+  //get Datumo list
+  List<Datum> get productshop => _shop;
 
 //get user cart
-  List<Product> get usershop => _usercart;
+  List<Datum> get usershop => _usercart;
 
   // add item to cart
+  String get token => _token;
 
-  void addItemToCart(Product product) {
+  void addItemToCart(Datum product) {
     _usercart.add(product);
     notifyListeners();
   }
 
   // remover item form cart
 
-  void removItemFormCart(Product product) {
+  void removItemFormCart(Datum product) {
     _usercart.remove(product);
     notifyListeners();
   }
 
-  void removerItemFromCart(Product product) {
+  void removerItemFromCart(Datum product) {
     _usercart.remove(product);
+    notifyListeners();
+  }
+
+  void setToken(String newToken) {
+    _token = newToken;
     notifyListeners();
   }
 }

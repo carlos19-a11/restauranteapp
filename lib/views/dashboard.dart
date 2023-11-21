@@ -10,7 +10,7 @@ import 'package:resapp/widgest/navbar.dart';
 // ignore: must_be_immutable
 class Dashborad extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variable
-  Dashborad({super.key});
+  const Dashborad({super.key});
 
   @override
   State<Dashborad> createState() => _DashboradState();
